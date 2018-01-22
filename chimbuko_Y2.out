@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Stakeholders}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{ECP Applications}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Software Technologies}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Use cases}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{NWCHEM}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{QCD}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{LAMMPS}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Fusion}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Requirements}{}% 10
+\BOOKMARK [1][-]{section.5}{Related work}{}% 11
+\BOOKMARK [1][-]{section.6}{Design}{}% 12
+\BOOKMARK [2][-]{subsection.6.1}{Introspection \( TAU + SOSFlow\)}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.2}{Required Data and the Stream Interface}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.3}{Data Analysis}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.4}{Performance Visualization}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.5}{Prescriptive provenance for online analysis}{section.6}% 17
+\BOOKMARK [1][-]{section.7}{Success metrics}{}% 18
+\BOOKMARK [1][-]{section.8}{Work plan}{}% 19
+\BOOKMARK [1][-]{section.9}{Open questions}{}% 20

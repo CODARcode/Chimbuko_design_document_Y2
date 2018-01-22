@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+\newcommand{\TITLE}{Chimbuko: CODAR Framework for Performance Analysis and Visualization-- YEAR 2
+}
+\newcommand{\AUTHORS}{Kerstin Kleese Van Dam, Shinjae Yoo, Wei Xu,\\ Line Pouchard, Hubertus Van Dam, Dingwen Tao, Cong Xie, Abid Malik\\ Brookhaven National Laboratory\\ \\ Kevin Huck, Sameer Shende\\ University of Oregon\\}
+
+\input{preamble}
+
+\title{\TITLE{}}
+\date{}
+\author{\AUTHORS{}}
+
+\begin{document}
+\pagestyle{empty}
+
+\input{header}
+
+\newpage
+
+\renewcommand{\contentsname}{{\huge Table of contents}}
+
+\tableofcontents
+
+\clearpage
+\maketitle
+
+\pagestyle{plain}
+\setcounter{page}{1}
+
+\input{Narrative/introduction}
+\input{Narrative/stakeholders}
+\input{Narrative/usecases}
+\input{Narrative/requirements}
+\input{Narrative/related}
+\input{Narrative/design}
+\input{Narrative/metrics}
+\input{Narrative/workplan}
+\input{Narrative/questions}
+
+\clearpage
+%\bibliographystyle{ieeetr}
+%\bibliography{Bibs/z-checker.bib}
+\begin{thebibliography}{1}
+
+  \bibitem{kerstin2015design}{\em {Enabling Structured Exploration of Workflow Performance Variability in Extreme-Scale Environments}}:
+  {Kleese van Dam, K., Stephan, E.G., Raju, B., Altintas, I., Elsethagen, T.O., and Krishnamoorthy, S.}, {Proc. $8^{th}$ Workshop in Many-Task Computing on Clouds, Grids, and Supercomputers (MTAGS) collocated with SC 2015}.
+  
+  \bibitem{sonar} {\em Lammel S., Zahn F., Fröning H. (2016) SONAR: Automated Communication Characterization for HPC Applications. In: Taufer M., Mohr B., Kunkel J. (eds) High Performance Computing. ISC High Performance 2016.}
+  
+ \bibitem{TAU} {\em S. Shende, A. D. Malony, J. Cuny, K. Lindlan, P. Beckman and S. Karmesin, Portable Profiling and Tracing for Parallel Scientific Applications using C++, Appears in: Proceedings of SPDT'98: ACM SIGMETRICS Symposium on Parallel and Distributed Tools, pp. 134-145, Aug. 1998.}
+ 
+ \bibitem{ScoreP}{\em Knüpfer A. et al. (2012) Score-P: A Joint Performance Measurement Run-Time Infrastructure for Periscope, Scalasca, TAU, and Vampir. In: Brunst H., Müller M., Nagel W., Resch M. (eds) Tools for High Performance Computing 2011. }
+ 
+ \bibitem{HPCToolkit} {\em L. Adhianto, S. Banerjee, M. Fagan, M. Krentel, G. Marin, J. Mellor-Crummey, and N. R. Tallent. HPCToolkit: Performance tools for scientific computing. In SC '08: Proc. of the 2008 ACM/IEEE Conference on Supercomputing, New York, NY, USA, 2008. ACM.}
+ 
+ \end{thebibliography}
+\end{document}
+
