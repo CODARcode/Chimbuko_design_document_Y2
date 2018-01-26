@@ -19,15 +19,7 @@ Figure~\ref{designfig:1} shows the interaction among the main components.
 \item {\bf{Arrow-7:}} Interaction between Chimbuko and performance database.
 \end{itemize}
 
-\subsection{Introspection (TAU + SOSFlow)}
-A performance monitoring prototype will be created to enable online access to performance data. This
-will consists of two parts:
-\begin{enumerate}
-\item Extensible Monitoring Plugin Support: TAU will be extended to provide a plugin framework where an event stream will be exported by each MPI rank. An analysis plugin will subscribe to events such as initialization/finalization, metadata values, interval event timers, and counters.  The current hardwired SOS integration will be converted to a plugin. The SOS client plugin will monitor the data stream at runtime and provide aggregation/filtering/reduction utilities.  It will also provide a feedback path to TAU in order to increase/decrease resolution of measurement (sampling rate, callpath depth, hardware counters, etc.) if/when that capability is added to TAU.
-\item Online Monitoring Access: Profile, event trace, and metadata events will be provided to the analysis through SOS~\cite{Chad}. In a coupled application/workflow scenario, SOS will regularly/periodically aggregate TAU data over the SOSFlow infrastructure.  This data will be extracted from SOS through an SOS analysis extension that will output the aggregated event stream as ADIOS streaming output.  The SOS extraction client will have the ability to filter data from one or more specific nodes, rather than just an aggregated data stream.  The ADIOS stream will be used by the trace analysis tools and anomaly detection methods.
-\end{enumerate}
-
-The following features will be collected by SOSFlow:
+The following performance features will be collected:
 \begin{enumerate}
 \item For each component in a workflow:
 \begin{enumerate}
@@ -57,6 +49,14 @@ The following features will be collected by SOSFlow:
 The metadata that needs to be extracted for will vary depending on the application and the node architecture where the application components are run.
 For visualization, we will also require the outlier results from the analysis module in terms of the array of call ID, MPI execution ID, or workflow ID.  
 We will prioritize detailed communication, understood as MPI communication, followed by I/O.  The choice of communication as a priority for data extraction is motivated by its demonstrated impact on performance for applications such as NWChem and LAMMPS. 
+
+\subsection{Introspection (TAU + SOSFlow)}
+A performance monitoring prototype will be created to enable online access to performance data. This
+will consists of two parts:
+\begin{enumerate}
+\item Extensible Monitoring Plugin Support: TAU will be extended to provide a plugin framework where an event stream will be exported by each MPI rank. An analysis plugin will subscribe to events such as initialization/finalization, metadata values, interval event timers, and counters.  The current hardwired SOS integration will be converted to a plugin. The SOS client plugin will monitor the data stream at runtime and provide aggregation/filtering/reduction utilities.  It will also provide a feedback path to TAU in order to increase/decrease resolution of measurement (sampling rate, callpath depth, hardware counters, etc.) if/when that capability is added to TAU.
+\item Online Monitoring Access: Profile, event trace, and metadata events will be provided to the analysis through SOS~\cite{Chad}. In a coupled application/workflow scenario, SOS will regularly/periodically aggregate TAU data over the SOSFlow infrastructure.  This data will be extracted from SOS through an SOS analysis extension that will output the aggregated event stream as ADIOS streaming output.  The SOS extraction client will have the ability to filter data from one or more specific nodes, rather than just an aggregated data stream.  The ADIOS stream will be used by the trace analysis tools and anomaly detection methods.
+\end{enumerate}
 
 \subsection{Provenance}
 \label{subsection:features}
