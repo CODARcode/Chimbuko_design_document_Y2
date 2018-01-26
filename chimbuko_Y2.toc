@@ -1,22 +1,21 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
 \contentsline {section}{\numberline {2}Stakeholders}{1}{section.2}
 \contentsline {subsection}{\numberline {2.1}ECP Applications}{1}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Software Technologies}{1}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Software Technologies}{2}{subsection.2.2}
 \contentsline {section}{\numberline {3}Use cases}{2}{section.3}
 \contentsline {subsection}{\numberline {3.1}NWCHEM}{2}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Requirements for the Online Performance Analysis}{2}{subsubsection.3.1.1}
 \contentsline {subsection}{\numberline {3.2}QCD}{2}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}LAMMPS}{3}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Fusion}{3}{subsection.3.4}
 \contentsline {section}{\numberline {4}Requirements}{3}{section.4}
-\contentsline {section}{\numberline {5}Related work}{3}{section.5}
-\contentsline {section}{\numberline {6}Design}{3}{section.6}
-\contentsline {subsection}{\numberline {6.1}Introspection ( TAU + SOSFlow)}{3}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Required Data and the Stream Interface}{4}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Data Analysis}{5}{subsection.6.3}
-\contentsline {subsubsection}{\numberline {6.3.1}Interface design between online data analysis and SOSFlow}{5}{subsubsection.6.3.1}
-\contentsline {subsection}{\numberline {6.4}Performance Visualization}{5}{subsection.6.4}
-\contentsline {subsection}{\numberline {6.5}Prescriptive provenance for online analysis}{6}{subsection.6.5}
-\contentsline {section}{\numberline {7}Success metrics}{6}{section.7}
-\contentsline {section}{\numberline {8}Work plan}{7}{section.8}
-\contentsline {section}{\numberline {9}Open questions}{7}{section.9}
+\contentsline {section}{\numberline {5}Related work}{4}{section.5}
+\contentsline {section}{\numberline {6}Design}{4}{section.6}
+\contentsline {subsection}{\numberline {6.1}Introspection ( TAU + SOSFlow)}{4}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Required Data and the Stream Interface}{5}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Example: Prescriptive Provenance}{6}{subsubsection.6.2.1}
+\contentsline {subsection}{\numberline {6.3}Data Analysis}{7}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}Interface design between online data analysis and SOSFlow}{7}{subsubsection.6.3.1}
+\contentsline {subsection}{\numberline {6.4}Performance Visualization}{7}{subsection.6.4}
+\contentsline {section}{\numberline {7}Success metrics}{8}{section.7}
+\contentsline {section}{\numberline {8}Work plan}{8}{section.8}
+\contentsline {section}{\numberline {9}Open questions}{8}{section.9}
