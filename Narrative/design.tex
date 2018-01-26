@@ -1,24 +1,45 @@
 \section{Design}
-The main design components are 1) Introspection, 2) Visualization, 3) Data Analysis and, 4) Provenance. The main goal is to detect  anomalies in an application behavior during runtime.
+The main design components are 1) Introspection, 2) Visualization, 3) Data Analysis and 4) Prescriptive  Provenance. 
 
 \begin{figure}[th!]
  \centering
-  \includegraphics[width=0.4\textwidth]{Figs/design_Y2}
- \caption{Chimbuko information pipeline.}
+  \includegraphics[width=0.65\textwidth]{Figs/Online_Chimbuko}
+ \caption{(a) Introspection (b) Chimbuko's main components.}
 \label{designfig:1}     
  \end{figure}
 
 
 \subsection{Introspection ( TAU + SOSFlow)}
-The University of Oregon (UO) will provide the CODAR project with infrastructure to make performance data accessible online (i.e., performance monitoring) in a form that permits in situ analysis and reduction. In the first year, a performance monitoring prototype will be created for demonstration of online access using three milestones. Subsequent years (as necessary) will see hardening, testing, tuning, and deployment of tools with relevant CODAR applications.  Configurability is a key concern in this effort, allowing for targeted and multi-resolution access to data.
+The University of Oregon (UO) will provide the CODAR project with infrastructure to make performance data accessible online (i.e., performance monitoring) in a form that permits in situ analysis and reduction. This year, a performance monitoring prototype will be created for demonstration of online access. 
 \begin{enumerate}
 \item Extensible Monitoring Plugin Support: TAU will be extended to provide a plugin framework where an event stream will be exported by each MPI rank. An analysis plugin will subscribe to events such as initialization/finalization, metadata values, interval event timers, and counters.  The TAU team will modify the current hardwired SOS integration to be a plugin. The SOS client plugin will monitor the data stream at runtime, and provide aggregation/filtering/reduction utilities.  The SOS client plugin will also provide a feedback path to TAU, in order to increase/decrease resolution of measurement (sampling rate, callpath depth, hardware counters, etc) if/when that capability is added to TAU.
-\item Online Monitoring Access: Profile, event trace and metadata events will be provided to the analysis through SOS\cite{Chad}. In a coupled application / workflow scenario, SOS will regularly/periodically aggregate TAU data over the SOSflow infrastructure.  This data will be extracted from SOS through an SOS analysis extension that will output the aggregated event stream as ADIOS streaming output.  The SOS extraction client will have the ability to filter data from one or more specific nodes, rather than just an aggregated data stream.  The CODAR team will use the ADIOS stream for supporting their trace analysis tools and anomaly detection. These tools may be shipped with TAU as contributed software.
+\item Online Monitoring Access: Profile, event trace and metadata events will be provided to the analysis through SOS~\cite{Chad}. In a coupled application / workflow scenario, SOS will regularly/periodically aggregate TAU data over the SOSflow infrastructure.  This data will be extracted from SOS through an SOS analysis extension that will output the aggregated event stream as ADIOS streaming output.  The SOS extraction client will have the ability to filter data from one or more specific nodes, rather than just an aggregated data stream.  The  BNL team will use the ADIOS stream for supporting their trace analysis tools and anomaly detection. These tools may be shipped with TAU as contributed software.
 \end{enumerate}
+
+Figure~\ref{designfig:1} shows the interaction among the main components.
+
+\begin{itemize}
+
+\item {\bf{Arrow-1:}} TAU plugin will be used to extract stream of information from application and ADIOS through SOSFlow framework. 
+\item {\bf{Arrow-2:}} System information collected through TAU plugin for SOSFlow.
+\item {\bf{Arrow-3:}} Performance information from SOSFlow to SOSFlow database.
+\item{\bf{ Arrow-4:}} Plugin between SOSFlow and Chimbuko.
+\item {\bf{Arrow-5:}} Interaction between a user and Chimbuko.
+\item {\bf{Arrow-6:}} Feedback to Cheetah and Savannah; potential next step.
+\item {\bf{Arrow-7:}} Interaction between Performance data and Chimbuko.
+
+\end{itemize}
+
 
 \subsection{Required Data and the Stream Interface}
 \label{subsection:features}
-Figure~\ref{designfig:1} gives the Chimbuko pipeline for information. The figure shows how performance data streams through Chimbuko's modules. For data analysis and visualization module, the following features are to be collected from SOSFlow:
+This year we are expecting to extract and store provenance relevant to online performance analysis.  Provenance will be extracted, aggregated, and made available while the simulation is in progress with the TAU/SOSFlow plugin.  As provenance can be very verbose and persisting provenance for an entire run is impractical, we plan on persisting detailed provenance ONLY for the anomaly events or events of interest detected by online performance analysis.  Ultimately, provenance is to be persisted in SOSFlow for a moving window prior to and posterior to an event with the additional capability to increase or decrease the verbosity of provenance (size and granularity of the moving window) selected for storage around the event.  In addition, static information describing the system, runtime configuration, and  workflow or application metadata similar to what is already extracted for offline will be persisted at the on start and end of the run (static information).  This is what we call prescriptive provenance: provenance selection and use prescribed by the results of performance data analysis described above.  Persisted prescriptive provenance is an end-product of the analysis after training sets have been built.
+Specifications of the moving window of provenance prior to an outlier event will need to be studied for tradeoffs.  For instance, we will study if this window is defined in terms of execution time or number of time-steps.  Constraints of size will apply, as well as tradeoffs in the amount of details needed, and will need to be balanced with usefulness to a scientific code developer.
+
+The metadata values that need to be extracted for prescriptive provenance will vary depending on the application and the node architecture where application components run.  Features given below are of great interest, with a priority first given to detailed communication, understood as MPI communication, then I/O.  The choice of communication as a priority for data extraction is motivated by its demonstrated impact on performance in 2017 for applications such NWChem and LAMMPS. 
+
+
+ For data analysis and visualization module, the following features are to be collected from SOSFlow:
 \begin{enumerate}
 \item {For each component in a workflow:}
 \begin{enumerate}
@@ -46,7 +67,19 @@ Figure~\ref{designfig:1} gives the Chimbuko pipeline for information. The figure
 \end{enumerate}
 \end{enumerate}
 
-For visualization module, we also require the outlier results from analysis module in terms of the array of call ID, MPI execution ID, or workflow ID. 
+For visualization module, we will also require the outlier results from analysis module in terms of the array of call ID, MPI execution ID, or workflow ID.  
+
+\subsubsection{Example: Prescriptive Provenance}
+Figure~\ref{designfig:2}  explains prescriptive provenance. Suppose we detect an abnormal behavior in performance for communication intensive workflow components. The event starts at timestamp T1 and ends at timestamp T2. In order to analyze this event, we need all the communication information with-in certain time window (or region) at the start of the event and at the end of the event. In Figure~\ref{designfig:2}, ${\bf{X}}$ shows the time window at the start of the event. We need software, hardware, and system information with in this time window that can be correlated with the communication patterns and performance behavior of the workflow when the event occurred.
+
+The prescriptive provenance approach can help in reducing the data for data analysis and performance  visualization components
+
+\begin{figure}[th!]
+ \centering
+  \includegraphics[width=0.5\textwidth]{Figs/Provenance}
+ \caption{(a) Prescriptive Provenance.}
+\label{designfig:2}     
+ \end{figure}
 
 
 \subsection{Data Analysis}
@@ -60,13 +93,10 @@ Last year, we finished off-line performance visualization focusing on ``overview
 Therefore, in order to establish the connection between the analysis module, SOSFlow, and the user, the mission of visualization module has two folds: first, a user exploration interface to visualize, monitor and interact with the analysis results and performance data; second, a back end communication to the analysis module and streaming data flow from SOSFlow. 
 
 As deliverables, we will complete the following tasks:
+
 \begin{itemize}
-\item A set of visual analytics modules at the front end to convey analysis results and provide interaction
+\item A set of visual analytics modules at the front end to convey analysis results and provide interaction.
 \item Methods on the back end to communicate with data analysis module and SOSFlow. Two styles are considered: (1) passive mode, where SOSFlow or analysis module performs as server, and sending update data to visualization module as its client; (2) active mode, where user queries the detailed information from SOSFlow or analysis module. 
 \item Methods on the back end to maintain a local database collecting only the details of the outliers and other necessary information for users to query workflow details.
 \end{itemize}
 
-\subsection{Prescriptive provenance for online analysis}
-This year we are expecting to extract and store provenance relevant to online performance analysis.  Provenance will be extracted, aggregated, and made available while the simulation is in progress with the TAU/SOSFlow plugin.  As provenance can be very verbose and persisting provenance for an entire run is impractical, we plan on persisting detailed provenance ONLY for the anomaly events or events of interest detected by online performance analysis.  Ultimately, provenance is to be persisted in SOSFlow for a moving window prior to and posterior to an event with the additional capability to increase or decrease the verbosity of provenance (size and granularity of the moving window) selected for storage around the event.  In addition, static information describing the system, runtime configuration, and  workflow or application metadata similar to what is already extracted for offline will be persisted at the on start and end of the run (static information).  This is what we call prescriptive provenance: provenance selection and use prescribed by the results of performance data analysis described above.  Persisted prescriptive provenance is an end-product of the analysis after training sets have been built.
-Specifications of the moving window of provenance prior to an outlier event will need to be studied for tradeoffs.  For instance, we will study if this window is defined in terms of execution time or number of timesteps.  Constraints of size will apply, as well as tradeoffs in the amount of details needed, and will need to be balanced with usefulness to a scientific code developer.
-The metadata values that need to be extracted for prescriptive provenance will vary depending on the application and the node architecture where application components run.  Features given in Section~\ref{subsection:features} are of great interest, with a priority first given to detailed communication, understood as mpi communication, then I/O.  The choice of communication as a priority for data extraction is motivated by its demonstrated impact on performance in 2017 for applications such NWChem and LAMMPS. 
