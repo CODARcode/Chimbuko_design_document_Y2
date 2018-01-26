@@ -9,7 +9,7 @@ The main design components are 1) Introspection, 2) Visualization, 3) Data Analy
  \end{figure}
 
 
-\subsection{Introspection ( TAU + SOSFlow)}
+\subsection{Introspection (TAU + SOSFlow)}
 The University of Oregon (UO) will provide the CODAR project with infrastructure to make performance data accessible online (i.e., performance monitoring) in a form that permits in situ analysis and reduction. This year, a performance monitoring prototype will be created for demonstration of online access. 
 \begin{enumerate}
 \item Extensible Monitoring Plugin Support: TAU will be extended to provide a plugin framework where an event stream will be exported by each MPI rank. An analysis plugin will subscribe to events such as initialization/finalization, metadata values, interval event timers, and counters.  The TAU team will modify the current hardwired SOS integration to be a plugin. The SOS client plugin will monitor the data stream at runtime, and provide aggregation/filtering/reduction utilities.  The SOS client plugin will also provide a feedback path to TAU, in order to increase/decrease resolution of measurement (sampling rate, callpath depth, hardware counters, etc) if/when that capability is added to TAU.
