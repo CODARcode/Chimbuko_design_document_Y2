@@ -1,6 +1,6 @@
 \section{Design}
 The main design components are: (1) Introspection, (2) Provenance, (3) Data Analysis and (4) Visualization. 
-Figure~\ref{designfig:1} shows the interaction among the main components.
+Figure~\ref{designfig:1}(a) shows the interaction among the main components. Figure~\ref{designfig:1}(b) shows the main components of Chimbuko and their interactions.
 
 \begin{figure}[th!]
  \centering
@@ -50,7 +50,7 @@ The metadata that needs to be extracted for will vary depending on the applicati
 For visualization, we will also require the outlier results from the analysis module in terms of the array of call ID, MPI execution ID, or workflow ID.  
 We will prioritize detailed communication, understood as MPI communication, followed by I/O.  The choice of communication as a priority for data extraction is motivated by its demonstrated impact on performance for applications such as NWChem and LAMMPS. 
 
-The performance data in Figure~\ref{designfig:1} is collected by TAU and SOSFlow infrastructure based on the information filtered by the prescriptive provenance module of Chimbuko. The data is temporary and will be flushed periodically to make room for the new data.
+The performance data in Figure~\ref{designfig:1}(a) is collected by TAU and SOSFlow infrastructure based on the information filtered by the prescriptive provenance module of Chimbuko. The data is temporary and will be flushed periodically to make room for the new data.
 
 \subsection{Introspection (TAU + SOSFlow)}
 A performance monitoring prototype will be created to enable online access to performance data. This
